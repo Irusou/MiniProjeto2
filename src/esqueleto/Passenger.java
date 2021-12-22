@@ -22,7 +22,6 @@ public class Passenger {
     private static final double YONG_DISCOUNT = 0.18;
     private static final double STUDENT_DISCOUNT = 0.36;
     private static final double SENIOR_DISCOUNT = 0.55;
-    private String teste;
 
     /**
      * Construtor da classe Passenger. Inicializa também o histórico de viagens,
@@ -44,7 +43,6 @@ public class Passenger {
         student = false;
         tripsLog = new Trip[NUMBER_OF_TRIPS];
         tripNumber = 0;
-        teste = "feliz natal";
     }
 
     /**
