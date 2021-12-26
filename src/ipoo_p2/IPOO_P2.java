@@ -11,7 +11,6 @@ public class IPOO_P2 {
 
     public static void main(String[] args) {
         new SubwayManager();
-        System.out.println("Estudante pila no teu cu");
     }
 
 }
