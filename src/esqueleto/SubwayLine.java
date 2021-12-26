@@ -10,6 +10,7 @@ public class SubwayLine {
 
     private char code;
     private String color;
+    private int subwayLine;
 
     private Station[] stations = {new Station("Povoa de Varzim",Zone.PVVC1,false),
                                   new Station("Vila do Conde",Zone.PVVC1,false),
@@ -46,7 +47,7 @@ public class SubwayLine {
      * @param color - cor representante da linha
      * @param stations - estações que compõem a linha
      */
-    public SubwayLine(char code, String color, Station[] stations) {
+    public SubwayLine(char code, String color, Station stations) {
         switch(code){
             case 'A' : this.code = code;break;
             case 'B' : this.code = code;break;
@@ -64,7 +65,11 @@ public class SubwayLine {
             case "Roxa" : this.color = color;break;
             case "Laranja" : this.color = color;break;
         }
-        this.stations = stations;   
+        subwayLine = 0;
+        
+        if(subwayLine < this.stations.length){
+            this.stations[subwayLine++] = stations;   
+        }
     }
     
     
@@ -170,5 +175,4 @@ public class SubwayLine {
     public String toString() {
         return "Codigo: "+getCode()+" Cor: "+getColor();
     }
-
 }
