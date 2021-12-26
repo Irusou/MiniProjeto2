@@ -1,6 +1,7 @@
 package esqueleto;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
@@ -15,29 +16,33 @@ import java.time.temporal.ChronoUnit;
  */
 public class Trip {
     private Route[] stations;
-    private LocalDateTime start;
-    private LocalDateTime end;
+    private LocalDateTime startTrip;
+    private LocalDateTime endTrip;
     private int numberOfZones;
     private double tripCost;
     
-    public Trip(Route[] stations, LocalDateTime start, LocalDateTime end, double tripCost){
+    public Trip(Route[] stations, LocalDate startTrip, LocalTime startHour, LocalDate endTrip, LocalTime endHour, double tripCost){
         if(!stations.equals(null)){
             this.stations = stations;
         }
-        
-        this.start = start;
-        this.end = end;
+        this.startTrip = LocalDateTime.of(startTrip, startHour);
+        this.endTrip = LocalDateTime.of(endTrip, endHour);
         
         if(tripCost > 0.0){
             this.tripCost = tripCost;
         }
     }
     
-    public LocalTime getTripDuration(){
-        LocalTime tripTime = null;
-        
+    public long getTripDuration(){
+        long tripTime = ChronoUnit.HOURS.between(startTrip, endTrip);
         return tripTime;
     }
     
-    public void showTrip(){}
+    public void showTrip(){
+        for(int i = 0;i<stations.length;i++){
+            stations[i].routeInfo();
+            stations[i].numberOfZones();
+        }
+        getTripDuration();
+    }
 }
