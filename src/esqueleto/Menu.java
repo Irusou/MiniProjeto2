@@ -1,5 +1,7 @@
 package esqueleto;
 
+import java.util.regex.Pattern;
+
 
 /**
  * Classe que representa o menu da aplicação. Responsável por toda a interação
@@ -151,7 +153,15 @@ public class Menu {
      * @return data de nascimento inserida
      */
     private String getBirthDate() {
-        return "";
+        boolean valid = false;
+        String birthDate = "";
+        do {
+            System.out.println("Introduza uma data de aniversário ao passageiro:");
+            birthDate = reader.getText("Data de aniversário");
+            valid = validBirthDate(birthDate);
+        } while (!valid);
+        return birthDate ;
+       
     }
 
     /**
@@ -237,7 +247,10 @@ public class Menu {
      * @return true se for valida, false caso contrario
      */
     private boolean validBirthDate(String birthDate) {
-     if(birthDate.matches("AAAA-MM-DD"))
+    birthDate.matches("\\d{4}-\\d{2}-\\d{2}");
+    Pattern p = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
+
+     if(p.matcher(birthDate).matches())
     { return true;
     }
      else 
