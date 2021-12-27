@@ -161,7 +161,6 @@ public class Menu {
             valid = validBirthDate(birthDate);
         } while (!valid);
         return birthDate ;
-       
     }
 
     /**
