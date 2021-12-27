@@ -84,13 +84,13 @@ public class Passenger {
     public int getDiscount() {
         int discount = 0;
         if(getAge()<10){
-            discount = (int)CHILD_DISCOUNT;
+            discount = (int)(CHILD_DISCOUNT * 100);
         }else if(!isStudent() && (getAge()>=10 || getAge()<=25)){
-            discount = (int)YONG_DISCOUNT;
+            discount = (int)(YONG_DISCOUNT * 100);
         }else if(isStudent() && (getAge()>10 || getAge()<=30)){
-            discount = (int)STUDENT_DISCOUNT;
+            discount = (int)(STUDENT_DISCOUNT * 100);
         }else{
-            discount = (int)SENIOR_DISCOUNT;
+            discount = (int)(SENIOR_DISCOUNT * 100);
         }
         return discount;
     }
@@ -128,6 +128,7 @@ public class Passenger {
     public void showInfo() {
         System.out.println("Nome: "+getName()+", "+getAge());
         System.out.println("Nif: "+getNif());
+        System.out.println("Desconto: "+getDiscount()+"%");
         System.out.println("Estudante? "+studentToString());
     }
 
