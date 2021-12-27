@@ -180,8 +180,17 @@ public class Menu {
      * seja
      */
     private boolean isDigit(String text) {
+    boolean isDigit = false;
+    if (text.contains("[a-zA-Z]+")) {
+
+     
+    }   
+    else
+    {
+      isDigit= true;
+    }
         
-        return false;
+        return isDigit;
     }
 
     /**
@@ -191,8 +200,15 @@ public class Menu {
      * @return true se não for vazia ou nula, false caso contrário
      */
     private boolean isValidString(String st) {
- 
+
+        if(st.equals(null))
+        {
         return false;
+        }
+        else{ 
+        return true;
+        }
+        
     }
 
     /**
@@ -202,8 +218,15 @@ public class Menu {
      * @return true se for valido, false caso contrário
      */
     private boolean validNif(String nif) {
-        
-       return false;
+       if(isValidString(nif) && isDigit(nif) && nif.length()==9)
+       {
+        return true;
+       }
+       else
+       {
+        return false;
+       }
+      
     }
 
     /**
@@ -214,8 +237,13 @@ public class Menu {
      * @return true se for valida, false caso contrario
      */
     private boolean validBirthDate(String birthDate) {
-        
-        return false;
+     if(birthDate.matches("AAAA-MM-DD"))
+    { return true;
+    }
+     else 
+    {
+    return false;
+    }
     }
 
 }

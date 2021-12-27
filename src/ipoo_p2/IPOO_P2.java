@@ -1,5 +1,6 @@
 package ipoo_p2;
 
+import esqueleto.Menu;
 import esqueleto.SubwayManager;
 
 
@@ -10,7 +11,10 @@ import esqueleto.SubwayManager;
 public class IPOO_P2 {
 
     public static void main(String[] args) {
-        new SubwayManager();
-    }
+       SubwayManager manager1 = new SubwayManager();
+       Menu menu1 =  new Menu(manager1);
+       menu1.mainMenu();
+    
 
+}
 }
