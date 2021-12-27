@@ -190,16 +190,11 @@ public class Menu {
      * seja
      */
     private boolean isDigit(String text) {
-    boolean isDigit = false;
-    if (text.contains("[a-zA-Z]+")) {
-
-     
-    }   
-    else
-    {
-      isDigit= true;
-    }
-        
+        boolean isDigit = false;
+            if(text.contains("[a-zA-Z]+")) {
+            }else{
+                isDigit= true;
+            }  
         return isDigit;
     }
 
@@ -210,15 +205,11 @@ public class Menu {
      * @return true se não for vazia ou nula, false caso contrário
      */
     private boolean isValidString(String st) {
-
-        if(st.equals(null))
-        {
-        return false;
-        }
-        else{ 
-        return true;
-        }
-        
+        if(st.equals(null)){
+            return false;
+        }else{ 
+            return true;
+        }    
     }
 
     /**
@@ -228,15 +219,11 @@ public class Menu {
      * @return true se for valido, false caso contrário
      */
     private boolean validNif(String nif) {
-       if(isValidString(nif) && isDigit(nif) && nif.length()==9)
-       {
-        return true;
-       }
-       else
-       {
-        return false;
-       }
-      
+       if(isValidString(nif) && isDigit(nif) && nif.length()==9){
+            return true;
+       }else{
+            return false;
+       } 
     }
 
     /**
@@ -247,16 +234,13 @@ public class Menu {
      * @return true se for valida, false caso contrario
      */
     private boolean validBirthDate(String birthDate) {
-    birthDate.matches("\\d{4}-\\d{2}-\\d{2}");
-    Pattern p = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
+        birthDate.matches("\\d{4}-\\d{2}-\\d{2}");
+        Pattern p = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
 
-     if(p.matcher(birthDate).matches())
-    { return true;
+        if(p.matcher(birthDate).matches()){
+            return true;
+        }else{
+            return false;
+        }
     }
-     else 
-    {
-    return false;
-    }
-    }
-
 }

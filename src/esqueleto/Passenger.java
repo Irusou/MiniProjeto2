@@ -1,7 +1,8 @@
 package esqueleto;
 
 import java.time.LocalDate;
-import java.time.Period;
+//import java.time.Period;
+import java.util.regex.Pattern;
 
 /**
  * Classe que representa um passageiro de metro
@@ -32,14 +33,22 @@ public class Passenger {
      * @param birthDate - data de nascimento do passageiro, no formato
      * AAAA-MM-DD
      */
-    public Passenger(String name, String nif, LocalDate birthDate) {
+    public Passenger(String name, String nif, String birthDate) {
         if(name != null){
             this.name = name;
         }
         if(nif != null && nif.length()==9){
             this.nif = nif;
         }
-        this.birthDate = birthDate.toString();
+        Pattern p = null;
+        if(birthDate.matches("\\d{4}-\\d{2}-\\d{2}")){
+            p = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
+        }
+        if(p.matcher(birthDate).matches()){
+            this.birthDate = birthDate;
+        }else{
+            this.birthDate = "AAAA-MM-DD";
+        }
         student = false;
         tripsLog = new Trip[NUMBER_OF_TRIPS];
         tripNumber = 0;
@@ -109,7 +118,7 @@ public class Passenger {
         int age = 0;
         LocalDate date = LocalDate.parse(birthDate);
         LocalDate today = LocalDate.now();
-        age = date.getYear() - today.getYear();
+        age = today.getYear() - date.getYear();
         return age;
     }
 

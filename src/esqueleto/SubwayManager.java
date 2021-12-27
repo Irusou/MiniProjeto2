@@ -13,6 +13,7 @@ public class SubwayManager {
 
     private DataBase db;
     private Menu menu;
+    private Passenger passenger;
 
     /**
      * Construtor da classe SubwayManager. Inicializa a base de dados com
@@ -21,8 +22,9 @@ public class SubwayManager {
     public SubwayManager() {
         this.db = new DataBase();
         this.menu = new Menu(this);
-
+        
         //iniciar menu
+        menu.mainMenu();
     }
 
     /**
@@ -33,7 +35,16 @@ public class SubwayManager {
      * @param birthdate - data de nascimento do passageiro
      */
     public boolean createPassenger(String name, String nif, String birthdate) {
-        return false;
+        boolean created = false;
+        if(db.isFull()){
+            db.increasePassengers();
+            created = false;
+        }else{
+            passenger = new Passenger(name,nif,birthdate);
+            db.addPassenger(passenger);
+            created = true;
+        }
+        return created;
     }
 
     /**
@@ -43,7 +54,14 @@ public class SubwayManager {
      * @return o sucesso da operação. True caso sucesso, false caso contrário.
      */
     public boolean deletePassenger(String nif) {
-        return false;
+        boolean deleted = false;
+        for(int i = 0; i < db.getNumberOfPassengers();i++){
+            if(db.existPassenger(nif)){
+                db.deletePassenger(nif);
+                deleted = true;
+            }
+        }
+        return deleted;
     }
 
     /**
@@ -52,7 +70,9 @@ public class SubwayManager {
      * @param nif - nif do passageiro
      */
     public void showPassenger(String nif) {
-        
+        if(db.existPassenger(nif)){
+            db.getPassenger(nif).showInfo();
+        }
     }
 
     /**
@@ -62,7 +82,10 @@ public class SubwayManager {
      * @return o sucesso da operação. True caso sucesso, false caso contrário.
      */
     public boolean addStudentStatus(String nif) {
-
+        if(db.existPassenger(nif)){
+            passenger.markAsStudent();
+            return true;
+        }
         return false;
     }
 

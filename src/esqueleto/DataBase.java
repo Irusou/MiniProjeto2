@@ -11,11 +11,13 @@ public class DataBase {
     // array que contém as linhas de metro
     private SubwayLine[] subwayLines;
     // array que contém os preços por zonas
-    
+    private Data[] prices;
     // array que contém os passageiros registados na aplicação
     private Passenger[] passengers;
+    
     private int numberOfPassengers;
-    private static final int MAX_PASSENGERS = 5;
+    
+    private static final int MAX_PASSENGERS = 5; //5
     /**
      * Construtor da classe DataBase. Deverá inicializar os arrays responsáveis
      * por armazenar os dados da aplicação.
@@ -23,8 +25,17 @@ public class DataBase {
     public DataBase() {
         passengers = new Passenger[MAX_PASSENGERS];
         numberOfPassengers = 0;
+        
     }
 
+    public int getMaxPassengers(){
+        return MAX_PASSENGERS;
+    }
+    
+    public int getNumberOfPassengers(){
+        return numberOfPassengers;
+    }
+    
     /**
      * Adiciona um novo passageiro ao array. Não poderá existir passageiros com
      * NIFs iguais.
@@ -33,15 +44,13 @@ public class DataBase {
      * @return o sucesso da operação. True caso sucesso, false caso contrário.
      */
     public boolean addPassenger(Passenger passenger) {
-        for(int i = 0; i<numberOfPassengers; i++){
-            if(!passengers[i].getNif().equals(passenger.getNif())){
-                if(numberOfPassengers<passengers.length){
-                    passengers[numberOfPassengers++] = passenger;
-                    return true;
-                }
-            }
-        }
-        return false;
+        boolean added = false;
+	if(numberOfPassengers<passengers.length){
+            passengers[numberOfPassengers++] = passenger;
+            added = true;
+	}
+	return added;
+
     }
 
     /**
@@ -68,13 +77,23 @@ public class DataBase {
      * @param nif - NIF a validar
      * @return true caso exista, false caso contrário
      */
-    private boolean existPassenger(String nif) {
+    public boolean existPassenger(String nif) {
         for(int i = 0; i<numberOfPassengers;i++){
             if(passengers[i].getNif().equals(nif)){
                 return true;
             }
         }
         return false;
+    }
+    
+    public Passenger getPassenger(String nif){
+        Passenger passenger = null;
+        for(int i = 0; i<numberOfPassengers; i++){
+            if(passengers[i].getNif().equals(nif)){
+                passenger = passengers[i];
+            }
+        }
+         return passenger;   
     }
 
     /**
@@ -83,7 +102,7 @@ public class DataBase {
      * @param nif - NIF do passageiro
      * @return posicao no array. -1 caso não exista.
      */
-    private int getPositionOfPassenger(String nif) {
+    public int getPositionOfPassenger(String nif) {
         int index = 0;
             for(int i = 0; i<numberOfPassengers;i++){
                 if(passengers[i].getNif().equals(nif)){
@@ -109,7 +128,7 @@ public class DataBase {
      * dobro do tamanho atual. Deverá passar todos os elementos existentes no
      * array para o novo array criado.
      */
-    private void increasePassengers() {
+    public void increasePassengers() {
         if(isFull()){
             Passenger[] newPassengers = new Passenger[2*MAX_PASSENGERS];
             for(int i = 0; i<passengers.length;i++){
@@ -122,7 +141,7 @@ public class DataBase {
      * Verifica se o array de passageiros esta cheio
      * @return isFull true se estiver cheio, false caso contrario.
      */
-    private boolean isFull(){
+    public boolean isFull(){
         boolean isFull = false;
             for(int i = 0; i<numberOfPassengers;i++){
                 if(!passengers[i].equals(null)){
