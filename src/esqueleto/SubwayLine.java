@@ -385,7 +385,6 @@ public class SubwayLine {
         this.color = color;
     }
 
-    
     @Override
     public String toString() {
         return "Codigo: "+getCode()+" Cor: "+getColor();

@@ -131,10 +131,9 @@ public class Menu {
                     }
                     break;
                     case 3:
-                    for(int i = 10 - 1; i>=0; i--)
-                    {
-                    System.out.println( stations[i].routeInfo());
-                     }
+                    for(int i = 10 - 1; i>=0; i--){
+                        System.out.println( stations[i].routeInfo());
+                    }
           }
       } while (option != 0);
     }
@@ -225,16 +224,12 @@ public class Menu {
      * seja
      */
     private boolean isDigit(String text) {
-    boolean isDigit = false;
-    if (text.contains("[a-zA-Z]+"))
-    {
-    }   
-    else
-    {
-      isDigit= true;
-    }
-        
-        return isDigit;
+        boolean isDigit = false;
+        if (text.contains("[a-zA-Z]+")){
+        }else{
+          isDigit= true;
+        }
+            return isDigit;
     }
 
     /**
@@ -244,15 +239,11 @@ public class Menu {
      * @return true se não for vazia ou nula, false caso contrário
      */
     private boolean isValidString(String st) {
-
-        if(st.equals(null))
-        {
-        return false;
-        }
-        else{ 
-        return true;
-        }
-        
+        if(st.equals(null)){
+            return false;
+        }else{ 
+            return true;
+        }  
     }
 
     /**
@@ -262,15 +253,11 @@ public class Menu {
      * @return true se for valido, false caso contrário
      */
     private boolean validNif(String nif) {
-       if(isValidString(nif) && isDigit(nif) && nif.length()==9)
-       {
-        return true;
-       }
-       else
-       {
-        return false;
-       }
-      
+       if(isValidString(nif) && isDigit(nif) && nif.length()==9){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /**
@@ -280,17 +267,18 @@ public class Menu {
      * @param birthDate - data a validar
      * @return true se for valida, false caso contrario
      */
-    private boolean validBirthDate(String birthDate) {
-    birthDate.matches("\\d{4}-\\d{2}-\\d{2}");
-    Pattern p = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
-
-     if(p.matcher(birthDate).matches())
-    { return true;
-    }
-     else 
-    {
-    return false;
-    }
+    private boolean validBirthDate(String birthDate){
+        boolean isValid = false;
+        Pattern p = null;
+        if(birthDate.matches("\\d{4}-\\d{2}-\\d{2}")){
+            p = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
+            if(p.matcher(birthDate).matches()){
+                isValid = true;
+            }else{
+                isValid = false;
+            }
+        }
+        return isValid;
     }
 
     /**
@@ -310,6 +298,4 @@ public class Menu {
         } while (!valid);
         return station;
     }
-
-
 }

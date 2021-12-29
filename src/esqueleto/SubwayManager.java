@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
  * @version 2021/2022
  */
 public class SubwayManager {
-
+    private Data dt;
     private DataBase db;
     private Menu menu;
     private Passenger passenger;
@@ -21,6 +21,7 @@ public class SubwayManager {
      */
     public SubwayManager() {
         this.db = new DataBase();
+        this.dt = new Data();
         this.menu = new Menu(this);
         
         //iniciar menu
@@ -100,7 +101,7 @@ public class SubwayManager {
      * @return rota criada com base nas estações de origem e de destino
      */
     public Route traceRoute(String origin, String destination) {
-
+        
         return null;
     }
 
