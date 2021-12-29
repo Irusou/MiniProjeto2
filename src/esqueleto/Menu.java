@@ -14,6 +14,8 @@ public class Menu {
 
     private final InputReader reader;
     private final SubwayManager manager;
+    private Route[] stations;
+    
 
     /**
      * Construtor da classe Menu
@@ -23,6 +25,7 @@ public class Menu {
     public Menu(SubwayManager manager) {
         this.reader = new InputReader();
         this.manager = manager;
+      
     }
 
     /**
@@ -102,8 +105,40 @@ public class Menu {
      * utilizador.
      */
     private void displaySubMenuTrip() {
+       int option;
+        do {
+            System.out.println("\n\tMENU GESTAO DE PASSAGEIROS");
+            System.out.println("1. Simular percuso");// DONE
+            System.out.println("2. Viajar");// DONE
+            System.out.println("3. Histórico de Viagens"); // DONE
+            System.out.println("0. Regressar ao Menu Anterior");
+            System.out.println("Escolha a sua opção:");
+            option = readOption(0, 3);
 
+                 switch (option) {
+////                case 1:
+////                    String nif = getNif();
+////                    String name = getName();
+////                    String birthDate = getBirthDate();
+////                    if (manager.createPassenger(name, nif, birthDate)) {
+////                        System.out.println("Passageiro criado com sucesso!");
+////                    }
+////                    break;
+                    case 2:
+                    String station = getOriginalStation();
+                    if (station.equals(1)/*manager.createPassenger(station, station, station*/) {
+                        System.out.println("Percuso: " + "|" );
+                    }
+                    break;
+                    case 3:
+                    for(int i = 10 - 1; i>=0; i--)
+                    {
+                    System.out.println( stations[i].routeInfo());
+                     }
+          }
+      } while (option != 0);
     }
+    
 
     /**
      * Apresenta o menu respetivo à funcionalidade de efetuar uma viagem.
@@ -111,8 +146,7 @@ public class Menu {
      * @param nif - NIF do passageiro
      */
     private void displayTripMenu(String nif) {
-               System.out.println("Introduza o NIF do passageiro:");
-
+   
     }
 
     /**
@@ -162,6 +196,7 @@ public class Menu {
             valid = validBirthDate(birthDate);
         } while (!valid);
         return birthDate ;
+       
     }
 
     /**
@@ -190,11 +225,15 @@ public class Menu {
      * seja
      */
     private boolean isDigit(String text) {
-        boolean isDigit = false;
-            if(text.contains("[a-zA-Z]+")) {
-            }else{
-                isDigit= true;
-            }  
+    boolean isDigit = false;
+    if (text.contains("[a-zA-Z]+"))
+    {
+    }   
+    else
+    {
+      isDigit= true;
+    }
+        
         return isDigit;
     }
 
@@ -205,11 +244,15 @@ public class Menu {
      * @return true se não for vazia ou nula, false caso contrário
      */
     private boolean isValidString(String st) {
-        if(st.equals(null)){
-            return false;
-        }else{ 
-            return true;
-        }    
+
+        if(st.equals(null))
+        {
+        return false;
+        }
+        else{ 
+        return true;
+        }
+        
     }
 
     /**
@@ -219,11 +262,15 @@ public class Menu {
      * @return true se for valido, false caso contrário
      */
     private boolean validNif(String nif) {
-       if(isValidString(nif) && isDigit(nif) && nif.length()==9){
-            return true;
-       }else{
-            return false;
-       } 
+       if(isValidString(nif) && isDigit(nif) && nif.length()==9)
+       {
+        return true;
+       }
+       else
+       {
+        return false;
+       }
+      
     }
 
     /**
@@ -234,13 +281,35 @@ public class Menu {
      * @return true se for valida, false caso contrario
      */
     private boolean validBirthDate(String birthDate) {
-        birthDate.matches("\\d{4}-\\d{2}-\\d{2}");
-        Pattern p = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
+    birthDate.matches("\\d{4}-\\d{2}-\\d{2}");
+    Pattern p = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
 
-        if(p.matcher(birthDate).matches()){
-            return true;
-        }else{
-            return false;
-        }
+     if(p.matcher(birthDate).matches())
+    { return true;
     }
+     else 
+    {
+    return false;
+    }
+    }
+
+    /**
+      Solicita ao utilizador a inserção de uma estação de partida válida
+     *
+     *
+     * @param originalStation - data a validar
+     * @return true se for valida, false caso contrario
+     */
+      private String getOriginalStation() {
+        boolean valid = false;
+        String station = "";
+        do {
+            System.out.println("Introduza o nome da estação de partida :");
+            station = reader.getText("Estação");
+            valid = isValidString(station);
+        } while (!valid);
+        return station;
+    }
+
+
 }
