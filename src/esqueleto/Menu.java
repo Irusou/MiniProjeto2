@@ -111,7 +111,8 @@ public class Menu {
      * @param nif - NIF do passageiro
      */
     private void displayTripMenu(String nif) {
-   
+               System.out.println("Introduza o NIF do passageiro:");
+
     }
 
     /**
