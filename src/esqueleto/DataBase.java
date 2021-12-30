@@ -11,12 +11,12 @@ public class DataBase {
     // array que contém as linhas de metro
     private SubwayLine[] subwayLines;
     // array que contém os preços por zonas
-    private Data[] prices;
+    private Data[] dt;
     // array que contém os passageiros registados na aplicação
     private Passenger[] passengers;
     
     private int numberOfPassengers;
-    
+    private static final int MAX_LINES = 6;
     private static final int MAX_PASSENGERS = 5; //5
     /**
      * Construtor da classe DataBase. Deverá inicializar os arrays responsáveis
@@ -25,7 +25,8 @@ public class DataBase {
     public DataBase() {
         passengers = new Passenger[MAX_PASSENGERS];
         numberOfPassengers = 0;
-        
+        subwayLines = new SubwayLine[Data.getLines().length];
+        dt = new Data[Data.getPrices().length];
     }
 
     public int getMaxPassengers(){
@@ -50,7 +51,6 @@ public class DataBase {
             added = true;
 	}
 	return added;
-
     }
 
     /**
@@ -119,8 +119,12 @@ public class DataBase {
      * @return preço correspondente, -1 caso não exista
      */
     public double getPriceOfZone(int zone) {
-        
-        return -1;
+        double price = 0.0;
+        for(int i = 0; i < zone-1; i++){
+            //price += dt[i].getPrices();
+            price += Data.getPrices()[i];
+        }
+        return price;
     }
 
     /**
@@ -173,7 +177,11 @@ public class DataBase {
      * @return a linha, caso exista
      */
     public SubwayLine lineWithStation(String station) {
-        
+        for(int i = 0; i < subwayLines.length;i++){
+            if(subwayLines[i].haveStation(station)){
+                return subwayLines[i];
+            }
+        }
         return null;
     }
 
@@ -185,7 +193,11 @@ public class DataBase {
      * @return a linha, caso exista
      */
     public SubwayLine lineWithBothStations(String origin, String destination) {
-       
+        for(int i = 0; i < subwayLines.length;i++){
+            if(subwayLines[i].haveStation(origin) && subwayLines[i].haveStation(destination)){
+                return subwayLines[i];
+            }
+        }
         return null;
     }
 

@@ -119,5 +119,5 @@ public class Data {
     public static double[] getPrices() {
         double[] prices = {0.80, 1.20, 1.60, 2.00, 2.40, 2.80, 3.20, 3.60, 4.00, 4.40};
         return prices;
-    }
+    }  
 }

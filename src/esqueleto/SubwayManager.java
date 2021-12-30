@@ -1,6 +1,7 @@
 package esqueleto;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 /**
  * Classe responsável pelo funcionamento da aplicação. Centraliza a informação e
@@ -130,7 +131,11 @@ public class SubwayManager {
      * @param nif - NIF do passageiro
      */
     public void showTripHistory(String nif) {
-  
+        for(int i = 0; i < db.getNumberOfPassengers();i++){
+            if(db.getPassenger(nif).getNif().equals(nif)){
+                db.getPassenger(nif).showTripLog();
+            }
+        }
     }
 
     /**
@@ -141,8 +146,13 @@ public class SubwayManager {
      * @return array resultante da concatenação dos dois arrays recebidos
      */
     private Station[] concatStations(Station[] st1, Station[] st2) {
-
-        return null;
+        //Station[] newStation = Arrays.copyOf(st1, st1.length+st2.length);
+        int st1Length = st1.length;
+        int st2Length = st2.length;
+        Station[] newStation = new Station[st1Length+st2Length];
+        System.arraycopy(st1Length, 0, newStation, 0, st1Length);
+        System.arraycopy(st2Length, 0, newStation, st1Length, st2Length);
+        return newStation;
     }
 
     /**
@@ -156,7 +166,7 @@ public class SubwayManager {
      * origem e a estação de destino
      */
     private Station getStationLinkedToDestination(SubwayLine originLine, String destination) {
-
+        
         return null;
     }
 
@@ -173,5 +183,4 @@ public class SubwayManager {
 
         return null;
     }
-
 }
