@@ -11,7 +11,6 @@ import java.util.Arrays;
  * @version 2021/2022
  */
 public class SubwayManager {
-    private Data dt;
     private DataBase db;
     private Menu menu;
     private Passenger passenger;
@@ -22,7 +21,6 @@ public class SubwayManager {
      */
     public SubwayManager() {
         this.db = new DataBase();
-        this.dt = new Data();
         this.menu = new Menu(this);
         
         //iniciar menu

@@ -17,6 +17,8 @@ public class Station {
      * Construtor da classe Station. Recebe o nome e a zona metropolitana a que
      * pertence.
      *
+     * @param name
+     * @param zone
      */
     public Station(String name, Zone zone) {
         this.name = name;
