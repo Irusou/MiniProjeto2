@@ -102,7 +102,7 @@ public class SubwayManager {
     public Route traceRoute(String origin, String destination) {
         Route route = null;
         if(db.hasBothStations(origin, destination)){
-            route = new Route(db.lineWithBothStations(origin, destination));
+            //route = new Route(db.hasBothStations(origin, destination));
         }
         return route;
     }
@@ -121,9 +121,16 @@ public class SubwayManager {
      * @param nif - NIF do passageiro
      * @return a viagem realizada
      */
-    public Trip makeTrip(String origin, String destination, LocalDateTime initialTime, LocalDateTime finalTime, String nif) {
+    public Trip makeTrip(String origin, String destination, LocalDateTime initialTime, 
+                         LocalDateTime finalTime, String nif) {
+        Trip trip = null;
+        if(db.hasBothStations(origin, destination)){
+            if(db.existPassenger(nif)){
+                //trip = new Trip();
+            }else{System.out.println("Passageiro não encontrado!");}
+        }else{System.out.println("As estações não foram encontradas!");}
 
-        return null;
+        return trip;
     }
 
     /**
@@ -181,7 +188,7 @@ public class SubwayManager {
      * de origem à estação de destino
      */
     private Station[] createRoute(int originPosition, int destinationPosition, SubwayLine line) {
-
+        
         return null;
     }
 }
