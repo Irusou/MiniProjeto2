@@ -29,12 +29,29 @@ public class DataBase {
         dt = new Data[Data.getPrices().length];
     }
 
+    
+    /**
+     * 
+     * @return MAX_PASSENGERS retorna o valor maximo de passageiros 
+     */
     public int getMaxPassengers(){
         return MAX_PASSENGERS;
     }
     
+    /**
+     * 
+     * @return numberOfPassengers retorna o numero de passageiros
+     */
     public int getNumberOfPassengers(){
         return numberOfPassengers;
+    }
+    
+    /**
+     * 
+     * @return Data.getPrices() retorna o array dos preços por zona
+     */
+    public double[] getPrices(){
+        return Data.getPrices();
     }
     
     /**
@@ -200,4 +217,21 @@ public class DataBase {
         }
         return null;
     }
+    
+    /**
+     * 
+     * @param origin estação de origem
+     * @param destination estação de destino
+     * @return hasBothStations retorna um valor booleano, true caso existam as duas estações, false caso contrario
+     */
+    public boolean hasBothStations(String origin, String destination){
+        boolean hasBothStations = false;
+        for(int i = 0; i < subwayLines.length;i++){
+            if(subwayLines[i].haveStation(origin) && subwayLines[i].haveStation(destination)){
+                hasBothStations = true;
+            }
+        }        
+        return hasBothStations;
+    }
+    
 }

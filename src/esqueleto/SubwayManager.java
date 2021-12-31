@@ -100,8 +100,11 @@ public class SubwayManager {
      * @return rota criada com base nas estações de origem e de destino
      */
     public Route traceRoute(String origin, String destination) {
-        
-        return null;
+        Route route = null;
+        if(db.hasBothStations(origin, destination)){
+            route = new Route(db.lineWithBothStations(origin, destination));
+        }
+        return route;
     }
 
     /**

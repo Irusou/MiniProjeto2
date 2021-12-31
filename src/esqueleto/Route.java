@@ -13,8 +13,8 @@ public class Route {
     
     public Route(Station[] station){
         this.stations = new Station[6];
-            stations = station; 
-	}    
+        stations = station; 
+    }    
     
     public int numberOfZones(){
         int numberOfZones = 0;
