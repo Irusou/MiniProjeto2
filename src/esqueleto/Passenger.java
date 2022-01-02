@@ -79,7 +79,7 @@ public class Passenger {
     /**
      * Calcula o desconto do passageiro mediante a sua idade ou condição.
      *
-     * @return o valor de desconto
+     * @return discount o valor de desconto
      */
     public int getDiscount() {
         int discount = 0;
@@ -112,7 +112,7 @@ public class Passenger {
     /**
      * Calcula a idade a partir da data de nascimento
      *
-     * @return valor da idade
+     * @return age valor da idade
      */
     public int getAge() {
         int age = 0;
@@ -149,6 +149,10 @@ public class Passenger {
         return student;
     }
     
+    /**
+     * 
+     * @return str mostra se e aluno ou nao
+     */
     public String studentToString(){
         String str = "";
         if(student){

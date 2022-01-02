@@ -209,10 +209,10 @@ public class DataBase {
      * @param destination - estação de destino a procurar
      * @return a linha, caso exista
      */
-    public SubwayLine lineWithBothStations(String origin, String destination) {
+    public SubwayLine[] lineWithBothStations(String origin, String destination) {
         for(int i = 0; i < subwayLines.length;i++){
             if(subwayLines[i].haveStation(origin) && subwayLines[i].haveStation(destination)){
-                return subwayLines[i];
+                return subwayLines;
             }
         }
         return null;

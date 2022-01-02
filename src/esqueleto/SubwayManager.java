@@ -1,7 +1,7 @@
 package esqueleto;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
+
 
 /**
  * Classe responsável pelo funcionamento da aplicação. Centraliza a informação e
@@ -12,6 +12,7 @@ import java.util.Arrays;
  */
 public class SubwayManager {
     private DataBase db;
+    private Data dt;
     private Menu menu;
     private Passenger passenger;
 
@@ -22,7 +23,7 @@ public class SubwayManager {
     public SubwayManager() {
         this.db = new DataBase();
         this.menu = new Menu(this);
-        
+        this.dt = new Data();
         //iniciar menu
         menu.mainMenu();
     }
@@ -102,7 +103,7 @@ public class SubwayManager {
     public Route traceRoute(String origin, String destination) {
         Route route = null;
         if(db.hasBothStations(origin, destination)){
-            //route = new Route(db.hasBothStations(origin, destination));
+            route = new Route(db.lineWithBothStations(origin, destination));
         }
         return route;
     }
@@ -124,9 +125,13 @@ public class SubwayManager {
     public Trip makeTrip(String origin, String destination, LocalDateTime initialTime, 
                          LocalDateTime finalTime, String nif) {
         Trip trip = null;
+        double price = 0.0;
         if(db.hasBothStations(origin, destination)){
+            for(int i=0;i<db.lineWithBothStations(origin, destination).length;i++){
+                price = Data.getPrices()[i];
+            }
             if(db.existPassenger(nif)){
-                //trip = new Trip();
+                trip = new Trip(db.lineWithBothStations(origin, destination),initialTime,finalTime,price);
             }else{System.out.println("Passageiro não encontrado!");}
         }else{System.out.println("As estações não foram encontradas!");}
 
@@ -154,7 +159,6 @@ public class SubwayManager {
      * @return array resultante da concatenação dos dois arrays recebidos
      */
     private Station[] concatStations(Station[] st1, Station[] st2) {
-        //Station[] newStation = Arrays.copyOf(st1, st1.length+st2.length);
         int st1Length = st1.length;
         int st2Length = st2.length;
         Station[] newStation = new Station[st1Length+st2Length];

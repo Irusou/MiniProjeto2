@@ -15,33 +15,51 @@ import java.time.temporal.ChronoUnit;
  * @version 2021/2022
  */
 public class Trip {
-    private Route[] stations;
+    private SubwayLine[] route;
     private LocalDateTime startTrip;
     private LocalDateTime endTrip;
     private int numberOfZones;
     private double tripCost;
     
-    public Trip(Route[] stations, LocalDate startTrip, LocalTime startHour, LocalDate endTrip, LocalTime endHour, double tripCost){
-        if(!stations.equals(null)){
-            this.stations = stations;
+    
+    /**
+     * Construtor de uma viagem
+     * 
+     * @param route array com as rotas
+     * @param startTrip data e hora do inicio da viagem
+     * @param endTrip data e hora do fim da viagem
+     * @param tripCost preco da viagem
+     */
+    public Trip(SubwayLine[] route, LocalDateTime startTrip, LocalDateTime endTrip, double tripCost){
+        if(!route.equals(null)){
+            this.route = route;
         }
-        this.startTrip = LocalDateTime.of(startTrip, startHour);
-        this.endTrip = LocalDateTime.of(endTrip, endHour);
+        this.startTrip = startTrip;
+        this.endTrip = endTrip;
         
         if(tripCost > 0.0){
             this.tripCost = tripCost;
         }
     }
     
+    /**
+     * Duracao da viagem
+     * 
+     * @return tripTime duracao de uma viagem
+     */
     public long getTripDuration(){
         long tripTime = ChronoUnit.HOURS.between(startTrip, endTrip);
         return tripTime;
     }
     
+    /**
+     * info da viagem
+     */
     public void showTrip(){
-        for(int i = 0;i<stations.length;i++){
-            stations[i].routeInfo();
-            stations[i].numberOfZones();
+        for(int i = 0;i<route.length;i++){
+            //route[i].routeInfo();
+            route[i].getStationInPosition(i).toString();
+            //route[i].numberOfZones();
         }
         getTripDuration();
     }

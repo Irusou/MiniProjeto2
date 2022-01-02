@@ -11,11 +11,21 @@ public class Route {
     private SubwayLine[] stations;
     private int numberOfStations = 0;
     
+    /**
+     * Construtor percurso
+     * 
+     * @param station array de linhas com estacoes
+     */
     public Route(SubwayLine[] station){
         //this.stations = new Station[6];
         stations = station; 
     }    
     
+    /**
+     * Numero de zonas
+     * 
+     * @return numberOfZones numero de zonas percorridas
+     */
     public int numberOfZones(){
         int numberOfZones = 0;
             for(int i = 0;i<stations.length;i++){
@@ -24,6 +34,12 @@ public class Route {
         return numberOfZones;
     }
     
+    /**
+     * Estacao de origem
+     * 
+     * @param station recebe uma linha
+     * @return stations[i] estacao de origem no array da linha
+     */
     public SubwayLine originalStation(String station){
         for(int i = 0; i < stations.length;i++){
             if(stations[i].haveStation(station)){
@@ -32,15 +48,13 @@ public class Route {
         }
         return null;
     }
-    
-//    public Station originalStation(String station){
-//        for(int i = 0;i<stations.length;i++){
-//            if(stations[i].getName().equals(station)){
-//                return stations[i];
-//            }
-//        }
-//        return null;
-//    }
+
+    /**
+     * Estacao de destino
+     * 
+     * @param station recebe uma linha
+     * @return stations[i] estacao de destino no array da linha
+     */
     public SubwayLine destinationStation(String station){
         for(int i = stations.length - 1; i>=0; i--){
             if(stations[i].haveStation(station)){
@@ -49,36 +63,12 @@ public class Route {
         }
         return null;
     }
-//    public Station destinationStation(String station){
-//        for(int i = stations.length - 1; i>=0; i--){
-//            if(stations[i].getName().equals(station)){
-//                return stations[i];
-//            }
-//        }
-//        return null;
-//    }
     
-//    public String routeInfo(){
-//        for(int i = 0; i<stations.length;i++){
-//            if(stations[i].getName().equals("Senhora de Matosinhos")||
-//                    stations[i].getName().equals("Povoa de Varzim")||
-//                    stations[i].getName().equals("ISMAI")||
-//                    stations[i].getName().equals("Hospital Sao Joao")||
-//                    stations[i].getName().equals("Aeroporto")||
-//                    stations[i].getName().equals("Senhora da Hora")){
-//                return "Inicio: "+stations[i].toString();
-//            }else if(stations[i].getName().equals("Estadio do Dragao")||
-//                    stations[i].getName().equals("Campanha")||
-//                    stations[i].getName().equals("Santo Ovidio")||
-//                    stations[i].getName().equals("Trindade")||
-//                    stations[i].getName().equals("Fanzeres")){
-//                return "Chegada: "+stations[i].toString();
-//            }else{
-//                return stations[i].toString();
-//            }  
-//        }
-//        return null;
-//    }
+    /**
+     * Info do percurso
+     * 
+     * @return info relativa ao percurso
+     */
     public String routeInfo(){
         for(int i = 0; i<stations.length;i++){
             return stations[i].getStationInPosition(i).toString();

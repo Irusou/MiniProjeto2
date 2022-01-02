@@ -25,7 +25,6 @@ public class Menu {
     public Menu(SubwayManager manager) {
         this.reader = new InputReader();
         this.manager = manager;
-      
     }
 
     /**
@@ -115,22 +114,20 @@ public class Menu {
             System.out.println("Escolha a sua opção:");
             option = readOption(0, 3);
 
-                 switch (option) {
-////                case 1:
-////                    String nif = getNif();
-////                    String name = getName();
-////                    String birthDate = getBirthDate();
-////                    if (manager.createPassenger(name, nif, birthDate)) {
-////                        System.out.println("Passageiro criado com sucesso!");
-////                    }
-////                    break;
-                    case 2:
+            switch (option) {
+                case 1:
+                    String origin = getOriginalStation();
+                    String destination = getDestinationStation();
+                    manager.traceRoute(origin, destination);
+                    break;
+                case 2:
+                    String nif = getNif();
                     String station = getOriginalStation();
                     if (station.equals(1)/*manager.createPassenger(station, station, station*/) {
                         System.out.println("Percuso: " + "|" );
                     }
                     break;
-                    case 3:
+                case 3:
                     for(int i = 10 - 1; i>=0; i--){
                         System.out.println( stations[i].routeInfo());
                     }
@@ -285,14 +282,30 @@ public class Menu {
       Solicita ao utilizador a inserção de uma estação de partida válida
      *
      *
-     * @param originalStation - data a validar
      * @return true se for valida, false caso contrario
      */
       private String getOriginalStation() {
         boolean valid = false;
         String station = "";
         do {
-            System.out.println("Introduza o nome da estação de partida :");
+            System.out.println("Introduza o nome da estação de partida: ");
+            station = reader.getText("Estação");
+            valid = isValidString(station);
+        } while (!valid);
+        return station;
+    }
+  
+    /**
+      Solicita ao utilizador a inserção de uma estação de chegada válida
+     *
+     *
+     * @return true se for valida, false caso contrario
+     */
+    private String getDestinationStation() {
+        boolean valid = false;
+        String station = "";
+        do {
+            System.out.println("Introduza o nome da estação de destino: ");
             station = reader.getText("Estação");
             valid = isValidString(station);
         } while (!valid);
