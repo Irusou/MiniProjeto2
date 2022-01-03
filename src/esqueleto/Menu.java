@@ -1,5 +1,7 @@
 package esqueleto;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.regex.Pattern;
 
 
@@ -14,7 +16,7 @@ public class Menu {
 
     private final InputReader reader;
     private final SubwayManager manager;
-    private Route[] stations;
+    //private Route[] stations;
     
 
     /**
@@ -122,15 +124,16 @@ public class Menu {
                     break;
                 case 2:
                     String nif = getNif();
-                    String station = getOriginalStation();
-                    if (station.equals(1)/*manager.createPassenger(station, station, station*/) {
-                        System.out.println("Percuso: " + "|" );
-                    }
+                    displayTripMenu(nif);
+//                    String station = getOriginalStation();
+//                    if (station.equals(1)/*manager.createPassenger(station, station, station*/) {
+//                        System.out.println("Percuso: " + "|" );
+//                    }
                     break;
                 case 3:
-                    for(int i = 10 - 1; i>=0; i--){
-                        System.out.println( stations[i].routeInfo());
-                    }
+                    nif = getNif();
+                    manager.showTripHistory(nif);
+                    break;
           }
       } while (option != 0);
     }
@@ -142,7 +145,14 @@ public class Menu {
      * @param nif - NIF do passageiro
      */
     private void displayTripMenu(String nif) {
-   
+        String origin = getOriginalStation();
+        String destination = getDestinationStation();
+        String initialTime = getTime();
+        String finalTime = getTime();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("AAAA-MM-DD HH:MM");
+        LocalDateTime newInitialTime = LocalDateTime.parse(initialTime, formatter);
+        LocalDateTime newFinalTime = LocalDateTime.parse(finalTime, formatter);
+        manager.makeTrip(origin, destination, newInitialTime, newFinalTime, nif);
     }
 
     /**
@@ -191,8 +201,7 @@ public class Menu {
             birthDate = reader.getText("Data de aniversário");
             valid = validBirthDate(birthDate);
         } while (!valid);
-        return birthDate ;
-       
+        return birthDate ; 
     }
 
     /**
@@ -270,6 +279,45 @@ public class Menu {
         if(birthDate.matches("\\d{4}-\\d{2}-\\d{2}")){
             p = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
             if(p.matcher(birthDate).matches()){
+                isValid = true;
+            }else{
+                isValid = false;
+            }
+        }
+        return isValid;
+    }
+    
+    /**
+     * Solicita ao utilizador a inserção de uma data e hora de uma viagem
+     * "AAAA-MM-DD HH:MM:SS".
+     *
+     * @return data de nascimento inserida
+     */
+    private String getTime() {
+        boolean valid = false;
+        String time = "";
+        do {
+            System.out.println("Introduza uma data de aniversário ao passageiro:");
+            time = reader.getText("Data de aniversário");
+            valid = validTime(time);
+        } while (!valid);
+        return time; 
+    }
+    
+    
+    /**
+     * Valida uma data e hora de viagem, recebida como texto no formato
+     * 'AAAA-MM-DD HH:MM:SS'
+     *
+     * @param initialTime - data a validar
+     * @return true se for valida, false caso contrario
+     */
+    private boolean validTime(String initialTime){
+        boolean isValid = false;
+        Pattern p = null;
+        if(initialTime.matches("\\d{4}-\\d{2}-\\d{2}\\ \\d{2}:\\d{2}:\\d{2}")){
+            p = Pattern.compile("\\d{4}-\\d{2}-\\d{2}\\ \\d{2}:\\d{2}:\\d{2}");
+            if(p.matcher(initialTime).matches()){
                 isValid = true;
             }else{
                 isValid = false;
