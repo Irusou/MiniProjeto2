@@ -194,11 +194,11 @@ public class SubwayManager {
         Station[] station = null;
         if(Data.getLines().equals(line)){
             for(int i=0;i<db.lineWithBothStations(originPosition, destinationPosition).length;i++){
-                if(Data.getLines().equals(db.lineWithBothStations(originPosition, destinationPosition)[i])){
-                    Data.getStations();
+                if(Data.getLines().equals(db.lineWithBothStations(originPosition, destinationPosition)[i])){ 
+                    station = Data.getStations();
                 }
             }
         }
-        return null;
+        return station;
     }
 }
