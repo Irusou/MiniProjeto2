@@ -106,7 +106,7 @@ public class Menu {
     private void displaySubMenuTrip() {
        int option;
         do {
-            System.out.println("\n\tMENU GESTAO DE PASSAGEIROS");
+            System.out.println("\n\tMENU GESTAO DE VIAGENS");
             System.out.println("1. Simular percuso");// DONE
             System.out.println("2. Viajar");// DONE
             System.out.println("3. Histórico de Viagens"); // DONE

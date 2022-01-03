@@ -48,17 +48,55 @@ public class Trip {
      * @return tripTime duracao de uma viagem
      */
     public long getTripDuration(){
-        long tripTime = ChronoUnit.HOURS.between(startTrip, endTrip);
+        long tripTime = ChronoUnit.HOURS.between(getStartTrip(), getEndTrip());
         return tripTime;
     }
+
+    /**
+     * @return the line
+     */
+    public SubwayLine[] getLine() {
+        return line;
+    }
+
+    /**
+     * @return the startTrip
+     */
+    public LocalDateTime getStartTrip() {
+        return startTrip;
+    }
+
+    /**
+     * @return the endTrip
+     */
+    public LocalDateTime getEndTrip() {
+        return endTrip;
+    }
+
+    /**
+     * @return the numberOfZones
+     */
+    public int getNumberOfZones() {
+        return numberOfZones;
+    }
+
+    /**
+     * @return the tripCost
+     */
+    public double getTripCost() {
+        return tripCost;
+    }
+    
+    
     
     /**
      * info da viagem
      */
     public void showTrip(){
-        for(int i = 0;i<line.length;i++){
-            line[i].getStationInPosition(i).toString();
+        for(int i = 0;i<getLine().length;i++){
+            getLine()[i].getStationInPosition(i).toString();
         }
+        getTripCost();
         getTripDuration();
     }
 }
