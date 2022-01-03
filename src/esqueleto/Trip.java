@@ -1,9 +1,7 @@
 package esqueleto;
 
 //import java.time.Instant;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 //import java.time.ZoneId;
 //import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -15,7 +13,7 @@ import java.time.temporal.ChronoUnit;
  * @version 2021/2022
  */
 public class Trip {
-    private SubwayLine[] route;
+    private SubwayLine[] line;
     private LocalDateTime startTrip;
     private LocalDateTime endTrip;
     private int numberOfZones;
@@ -25,14 +23,16 @@ public class Trip {
     /**
      * Construtor de uma viagem
      * 
-     * @param route array com as rotas
+     * @param line array com as rotas
      * @param startTrip data e hora do inicio da viagem
      * @param endTrip data e hora do fim da viagem
      * @param tripCost preco da viagem
      */
-    public Trip(SubwayLine[] route, LocalDateTime startTrip, LocalDateTime endTrip, double tripCost){
-        if(!route.equals(null)){
-            this.route = route;
+    public Trip(SubwayLine[] line, LocalDateTime startTrip, LocalDateTime endTrip, double tripCost){
+        if(!line.equals(null)){
+            for(int i = 0;i<this.line.length;i++){
+                this.line = line;
+            }
         }
         this.startTrip = startTrip;
         this.endTrip = endTrip;
@@ -56,10 +56,8 @@ public class Trip {
      * info da viagem
      */
     public void showTrip(){
-        for(int i = 0;i<route.length;i++){
-            //route[i].routeInfo();
-            route[i].getStationInPosition(i).toString();
-            //route[i].numberOfZones();
+        for(int i = 0;i<line.length;i++){
+            line[i].getStationInPosition(i).toString();
         }
         getTripDuration();
     }

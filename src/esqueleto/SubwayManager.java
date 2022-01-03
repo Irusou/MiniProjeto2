@@ -134,7 +134,6 @@ public class SubwayManager {
                 trip = new Trip(db.lineWithBothStations(origin, destination),initialTime,finalTime,price);
             }else{System.out.println("Passageiro não encontrado!");}
         }else{System.out.println("As estações não foram encontradas!");}
-
         return trip;
     }
 
@@ -178,7 +177,7 @@ public class SubwayManager {
      * origem e a estação de destino
      */
     private Station getStationLinkedToDestination(SubwayLine originLine, String destination) {
-        
+
         return null;
     }
 
@@ -192,7 +191,9 @@ public class SubwayManager {
      * de origem à estação de destino
      */
     private Station[] createRoute(int originPosition, int destinationPosition, SubwayLine line) {
-        
+        if(Data.getLines().equals(line)){
+            
+        }
         return null;
     }
 }

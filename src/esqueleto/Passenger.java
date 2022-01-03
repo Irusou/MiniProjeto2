@@ -1,7 +1,6 @@
 package esqueleto;
 
 import java.time.LocalDate;
-//import java.time.Period;
 import java.util.regex.Pattern;
 
 /**
@@ -46,8 +45,6 @@ public class Passenger {
         }
         if(p.matcher(birthDate).matches()){
             this.birthDate = birthDate;
-        }else{
-            this.birthDate = "AAAA-MM-DD";
         }
         student = false;
         tripsLog = new Trip[NUMBER_OF_TRIPS];

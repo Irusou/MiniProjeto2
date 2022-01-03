@@ -9,7 +9,7 @@ package esqueleto;
 public class DataBase {
 
     // array que contém as linhas de metro
-    private SubwayLine[] subwayLines;
+    private SubwayLine[] line;
     // array que contém os preços por zonas
     private Data[] dt;
     // array que contém os passageiros registados na aplicação
@@ -25,7 +25,7 @@ public class DataBase {
     public DataBase() {
         passengers = new Passenger[MAX_PASSENGERS];
         numberOfPassengers = 0;
-        subwayLines = new SubwayLine[Data.getLines().length];
+        line = new SubwayLine[Data.getLines().length];
         dt = new Data[Data.getPrices().length];
     }
 
@@ -194,9 +194,9 @@ public class DataBase {
      * @return a linha, caso exista
      */
     public SubwayLine lineWithStation(String station) {
-        for(int i = 0; i < subwayLines.length;i++){
-            if(subwayLines[i].haveStation(station)){
-                return subwayLines[i];
+        for(int i = 0; i < line.length;i++){
+            if(line[i].haveStation(station)){
+                return line[i];
             }
         }
         return null;
@@ -210,9 +210,25 @@ public class DataBase {
      * @return a linha, caso exista
      */
     public SubwayLine[] lineWithBothStations(String origin, String destination) {
-        for(int i = 0; i < subwayLines.length;i++){
-            if(subwayLines[i].haveStation(origin) && subwayLines[i].haveStation(destination)){
-                return subwayLines;
+        for(int i = 0; i < line.length;i++){
+            if(line[i].haveStation(origin) && line[i].haveStation(destination)){
+                return line;
+            }
+        }
+        return null;
+    }
+    
+        /**
+     * Retorna a linha de metro onde exista duas estações específicas.
+     *
+     * @param origin - estação de origem a procurar
+     * @param destination - estação de destino a procurar
+     * @return a linha, caso exista
+     */
+    public SubwayLine[] lineWithBothStations(int origin, int destination) {
+        for(int i = 0; i < line.length;i++){
+            if(line[i].hasStationInPosition(origin) && line[i].hasStationInPosition(destination)){
+                return line;
             }
         }
         return null;
@@ -226,8 +242,8 @@ public class DataBase {
      */
     public boolean hasBothStations(String origin, String destination){
         boolean hasBothStations = false;
-        for(int i = 0; i < subwayLines.length;i++){
-            if(subwayLines[i].haveStation(origin) && subwayLines[i].haveStation(destination)){
+        for(int i = 0; i < line.length;i++){
+            if(line[i].haveStation(origin) && line[i].haveStation(destination)){
                 hasBothStations = true;
             }
         }        

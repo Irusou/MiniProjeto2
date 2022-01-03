@@ -8,17 +8,16 @@ package esqueleto;
  * @version 2021/2022
  */
 public class Route {
-    private SubwayLine[] stations;
-    private int numberOfStations = 0;
+    private SubwayLine[] line;
     
     /**
      * Construtor percurso
      * 
      * @param station array de linhas com estacoes
      */
-    public Route(SubwayLine[] station){
+    public Route(SubwayLine[] line){
         //this.stations = new Station[6];
-        stations = station; 
+        this.line = line; 
     }    
     
     /**
@@ -28,7 +27,7 @@ public class Route {
      */
     public int numberOfZones(){
         int numberOfZones = 0;
-            for(int i = 0;i<stations.length;i++){
+            for(int i = 0;i<line.length;i++){
                 numberOfZones++;
             }
         return numberOfZones;
@@ -41,9 +40,9 @@ public class Route {
      * @return stations[i] estacao de origem no array da linha
      */
     public SubwayLine originalStation(String station){
-        for(int i = 0; i < stations.length;i++){
-            if(stations[i].haveStation(station)){
-                return stations[i];
+        for(int i = 0; i < line.length;i++){
+            if(line[i].haveStation(station)){
+                return line[i];
             }
         }
         return null;
@@ -56,9 +55,9 @@ public class Route {
      * @return stations[i] estacao de destino no array da linha
      */
     public SubwayLine destinationStation(String station){
-        for(int i = stations.length - 1; i>=0; i--){
-            if(stations[i].haveStation(station)){
-                return stations[i];
+        for(int i = line.length - 1; i>=0; i--){
+            if(line[i].haveStation(station)){
+                return line[i];
             }
         }
         return null;
@@ -70,8 +69,8 @@ public class Route {
      * @return info relativa ao percurso
      */
     public String routeInfo(){
-        for(int i = 0; i<stations.length;i++){
-            return stations[i].getStationInPosition(i).toString();
+        for(int i = 0; i<line.length;i++){
+            return line[i].getStationInPosition(i).toString();
         }
         return null;
     }
