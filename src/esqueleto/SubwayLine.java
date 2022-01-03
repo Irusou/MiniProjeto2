@@ -39,19 +39,6 @@ public class SubwayLine {
             case "Laranja" : this.color = color;break;
         }
         
-//        if(!line.equals(null) && code == 'A' && color.equals("Azul")){
-//            this.lineA = line;
-//        }else if(!line.equals(null) && code == 'B' && color.equals("Vermelha")){
-//            this.lineB = line;
-//        }else if(!line.equals(null) && code == 'C' && color.equals("Verde")){
-//            this.lineC = line;
-//        }else if(!line.equals(null) && code == 'D' && color.equals("Amarela")){
-//            this.lineD = line;
-//        }else if(!line.equals(null) && code == 'E' && color.equals("Roxa")){
-//            this.lineE = line;
-//        }else if(!line.equals(null) && code == 'F' && color.equals("Laranja")){
-//            this.lineF = line;
-//        }
         this.line = line;
     }
     

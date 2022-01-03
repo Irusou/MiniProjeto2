@@ -17,7 +17,8 @@ public class DataBase {
     
     private int numberOfPassengers;
     private static final int MAX_LINES = 6;
-    private static final int MAX_PASSENGERS = 5; //5
+    private static final int MAX_PASSENGERS = 5;
+    
     /**
      * Construtor da classe DataBase. Deverá inicializar os arrays responsáveis
      * por armazenar os dados da aplicação.
@@ -29,7 +30,6 @@ public class DataBase {
         dt = new Data[Data.getPrices().length];
     }
 
-    
     /**
      * 
      * @return MAX_PASSENGERS retorna o valor maximo de passageiros 
@@ -102,7 +102,13 @@ public class DataBase {
         }
         return false;
     }
-    
+
+    /**
+     * valida a existencia de um passageiro com um NIF igual.
+     *
+     * @param nif - NIF a validar
+     * @return passenger retorna um passageiro caso exista
+     */    
     public Passenger getPassenger(String nif){
         Passenger passenger = null;
         for(int i = 0; i<numberOfPassengers; i++){
@@ -248,6 +254,5 @@ public class DataBase {
             }
         }        
         return hasBothStations;
-    }
-    
+    } 
 }

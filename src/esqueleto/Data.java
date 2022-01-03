@@ -17,8 +17,8 @@ public class Data {
     private static final Station[] stations4 = {st16, st17, st18, st6, st19, st20, st21};
     private static final Station[] stations5 = {st22, st23, st13, st3, st4, st5, st6};
     private static final Station[] stations6 = {st3, st4, st5, st6, st7, st8, st24, st25, st26};
-    
     private static final Station[][] stations = {stations1,stations2,stations3,stations4,stations5,stations6};
+    
     /**
      * Inicializa todas as estações
      */
@@ -97,22 +97,16 @@ public class Data {
         SubwayLine[] lines = new SubwayLine[6];
 
         // TERMINAR ARRAYS ESTACOES
-        //Station[] stations1 = {st1, st2, st3, st4, st5, st6, st7, st8};
         lines[0] = new SubwayLine('A', "Azul", stations1);
 
-        //Station[] stations2 = {st9, st10, st11, st12, st13, st3, st4, st5, st6, st7, st8};
         lines[1] = new SubwayLine('B', "Vermelha", stations2);
 
-        //Station[] stations3 = {st14, st15, st13, st3, st4, st6, st7};
         lines[2] = new SubwayLine('C', "Verde", stations3);
 
-        //Station[] stations4 = {st16, st17, st18, st6, st19, st20, st21};
         lines[3] = new SubwayLine('D', "Amarela", stations4);
 
-        //Station[] stations5 = {st22, st23, st13, st3, st4, st5, st6};
         lines[4] = new SubwayLine('E', "Roxa", stations5);
 
-        //Station[] stations6 = {st3, st4, st5, st6, st7, st8, st24, st25, st26};
         lines[5] = new SubwayLine('F', "Laranja", stations6);
 
         return lines;

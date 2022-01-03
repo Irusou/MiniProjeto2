@@ -16,7 +16,6 @@ public class Menu {
 
     private final InputReader reader;
     private final SubwayManager manager;
-    //private Route[] stations;
     
 
     /**
@@ -125,10 +124,6 @@ public class Menu {
                 case 2:
                     String nif = getNif();
                     displayTripMenu(nif);
-//                    String station = getOriginalStation();
-//                    if (station.equals(1)/*manager.createPassenger(station, station, station*/) {
-//                        System.out.println("Percuso: " + "|" );
-//                    }
                     break;
                 case 3:
                     nif = getNif();

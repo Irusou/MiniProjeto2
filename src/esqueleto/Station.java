@@ -56,5 +56,4 @@ public class Station {
     public String toString() {
         return "Nome: " + name + ", " + zone;
     }
-
 }

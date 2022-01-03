@@ -13,10 +13,9 @@ public class Route {
     /**
      * Construtor percurso
      * 
-     * @param station array de linhas com estacoes
+     * @param line array de linhas com estacoes
      */
     public Route(SubwayLine[] line){
-        //this.stations = new Station[6];
         this.line = line; 
     }    
     
